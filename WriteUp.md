@@ -1,0 +1,17 @@
+About:
+This program simulates repeated rounds of Blackjack between an AI player and a human or simulated opponent. The AI player uses stored game statistics to improve its decision-making over time. Specifically, it tracks whether hitting or standing in a particular game state led to a win, and uses that data to guide future decisions. Two versions of the program are implemented: one using a custom hash table for memory, and one using a custom binary search tree (BST) for memory. Each version runs 100,000 rounds and reports the number of wins, losses, and ties, along with hit/stand decision counts and total runtime.
+
+Data:
+The core data generated and stored by the program is a mapping from game states to win statistics. A game state is represented by a key that includes the AI’s hand total, the opponent’s visible card, and the number of times the AI hit or stood during the round. Each key maps to a Stat object, which stores how often the AI won when hitting or standing in that state. This data is generated during simulation; there is no external input file.
+
+Data Structures:
+The first version uses a custom-built chained hash table with an array of linked lists. Keys are strings such as "17|K|1|0", and each list node stores a Pair containing the key and a Stat object. This structure allows fast average-time lookups, though performance can degrade with excessive hash collisions. The second version uses a custom-built unbalanced binary search tree (BST), where nodes store the same key-Stat mappings and access is based on lexicographic string comparisons. Lookups and inserts in the BST take O(log n) in the average case but can degrade to O(n) in the worst case if the tree becomes unbalanced.
+
+Instructions:
+To run each version, compile and execute the corresponding simulator file. Additionally, if you would like to play interactively against the AI yourself, you can compile and run the Blackjack.java file using: javac Blackjack.java followed by java Blackjack. This mode allows you to input 'hit' or 'stand' manually and see how the AI responds in real time. For the hash table version, run: javac HashTableSimulator.java followed by java HashTableSimulator. For the BST version, run: javac BSTSimulator.java followed by java BSTSimulator. Each program will output the total number of rounds simulated, the number of hits and stands by the AI, the number of wins, losses, and ties, and the total runtime. These results allow for a direct comparison of performance and decision frequency.
+
+Results:
+In simulations of 100,000 rounds, both versions produced consistent win/loss/tie ratios, indicating functional equivalence. The hash table version consistently executed faster, with lower average lookup and update times. The BST version performed reasonably but slowed as the number of stored keys grew. This matched expectations: the hash table has average-case constant time access, while the BST may degrade in performance depending on the structure.
+
+Future:
+Several improvements or extensions are possible. The AI logic could be enhanced using Monte Carlo rollouts or deeper decision trees. The state representation could be simplified to reduce memory usage, such as by omitting hit/stand counts. The program could also include visualization tools to show learning over time, or use file input/output to persist AI memory across runs. Lastly, a graphical user interface could be added to make the game interactive for human players.
