@@ -1,3 +1,7 @@
+Context: Developed as a final project for the Data Structures course at Amherst College.
+
+Objective: The project was designed to empirically test the performance trade-offs between different self-implemented data structures in a high-iteration simulation environment.
+
 About:
 This program simulates repeated rounds of Blackjack between an AI player and a human or simulated opponent. The AI player uses stored game statistics to improve its decision-making over time. Specifically, it tracks whether hitting or standing in a particular game state led to a win, and uses that data to guide future decisions. Two versions of the program are implemented: one using a custom hash table for memory, and one using a custom binary search tree (BST) for memory. Each version runs 100,000 rounds and reports the number of wins, losses, and ties, along with hit/stand decision counts and total runtime.
 
